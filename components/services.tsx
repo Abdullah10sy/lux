@@ -1,65 +1,75 @@
 import Link from "next/link"
-import { ArrowUpRight, Palette, Code, Layers } from "lucide-react"
 
 const services = [
   {
-    icon: Palette,
     title: "Branding Design",
     description: "A strong brand is more than just a logo—it's the foundation of how your audience perceives you. I create cohesive and impactful brand identities that ensure consistency across all touchpoints",
-    tags: ["Logo design", "Brand guideline", "Brand strategy", "+more"],
+    features: ["Logo design", "Brand guideline", "Brand strategy", "+more"],
+    gradient: "from-[#F59E0B] to-[#D97706]"
   },
   {
-    icon: Code,
     title: "Framer Development",
     description: "Transforming designs into fully responsive, interactive websites with Framer. Whether it's a landing page or a full-scale web experience, I build fast, modern sites optimized for seamless performance",
-    tags: ["Landing page", "Multipages", "Web migration", "+more"],
+    features: ["Landing page", "Multipages", "Web migration", "+more"],
+    gradient: "from-[#3B82F6] to-[#1D4ED8]"
   },
   {
-    icon: Layers,
     title: "UI/UX Design",
     description: "Designing user-centered experiences that are both functional and visually engaging. From concept to final prototype, I focus on intuitive interfaces that enhance experiences and usability",
-    tags: ["Web & app design", "Design system", "Prototyping", "+more"],
-  },
+    features: ["Web & app design", "Design system", "Prototyping", "+more"],
+    gradient: "from-[#10B981] to-[#059669]"
+  }
 ]
 
 export function Services() {
   return (
-    <section id="services" className="py-24 px-6">
-      <div className="max-w-7xl mx-auto">
-        <div className="max-w-3xl mb-16">
-          <p className="text-sm text-muted-foreground uppercase tracking-wide mb-4">Services</p>
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground leading-tight text-balance">
-            Design solutions that elevate brands and create seamless user experiences. I help bring ideas to life with strategy and creativity
-          </h2>
-        </div>
+    <section id="services" className="py-20 px-4">
+      <div className="mx-auto max-w-[1200px]">
+        {/* Section Label */}
+        <p className="text-white/50 text-sm mb-4">Services</p>
 
-        <div className="grid md:grid-cols-3 gap-6">
-          {services.map((service, index) => (
+        {/* Section Header */}
+        <h2 className="text-3xl md:text-4xl font-medium text-white max-w-3xl mb-12 leading-tight">
+          Design solutions that elevate brands and create seamless user experiences.
+          <span className="text-white/50"> I help bring ideas to life with strategy and creativity</span>
+        </h2>
+
+        {/* Services Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {services.map((service) => (
             <div
-              key={index}
-              className="group bg-secondary/50 rounded-2xl p-8 border border-border hover:border-foreground/20 transition-colors"
+              key={service.title}
+              className="bg-[#1a1a1a] rounded-2xl p-6 border border-white/5 flex flex-col hover:border-white/10 transition-colors"
             >
-              <div className="bg-background rounded-xl p-3 w-fit mb-6">
-                <service.icon className="h-6 w-6 text-foreground" />
+              {/* Header */}
+              <div className="flex items-center justify-between mb-4">
+                <h3 className="text-lg font-medium text-white">{service.title}</h3>
+                <Link
+                  href="#contact"
+                  className="text-white/50 hover:text-white text-sm transition-colors"
+                >
+                  Start a Project
+                </Link>
               </div>
-              <h3 className="text-xl font-semibold text-foreground mb-2">{service.title}</h3>
-              <Link
-                href="#contact"
-                className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground transition-colors mb-4"
-              >
-                Start a Project
-                <ArrowUpRight className="h-3 w-3" />
-              </Link>
-              <p className="text-sm text-muted-foreground leading-relaxed mb-6">
+
+              {/* Description */}
+              <p className="text-white/60 text-sm mb-6 leading-relaxed flex-grow">
                 {service.description}
               </p>
+
+              {/* Preview Image */}
+              <div className={`bg-gradient-to-br ${service.gradient} aspect-[4/3] rounded-xl mb-6 flex items-center justify-center overflow-hidden`}>
+                <div className="w-[85%] h-[85%] bg-white/10 rounded-lg backdrop-blur-sm border border-white/20 shadow-xl" />
+              </div>
+
+              {/* Features */}
               <div className="flex flex-wrap gap-2">
-                {service.tags.map((tag, tagIndex) => (
+                {service.features.map((feature) => (
                   <span
-                    key={tagIndex}
-                    className="text-xs text-muted-foreground bg-background px-3 py-1.5 rounded-full"
+                    key={feature}
+                    className="px-3 py-1.5 bg-white/5 rounded-full text-white/60 text-sm"
                   >
-                    {tag}
+                    {feature}
                   </span>
                 ))}
               </div>

@@ -1,75 +1,87 @@
+"use client"
+
 import Link from "next/link"
-import { ArrowUpRight } from "lucide-react"
 
 const works = [
   {
     title: "LumeX",
-    category: "SaaS",
-    type: "Dashboard Design",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop",
+    tags: ["SaaS", "Dashboard Design"],
+    description: "LumeX is a powerful SaaS platform designed to help businesses streamline data management and analytics",
+    image: "https://framerusercontent.com/images/LumeX.jpg",
+    gradient: "from-[#4F46E5] to-[#7C3AED]"
   },
   {
     title: "Planza",
-    category: "Framer",
-    type: "Website",
-    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop",
+    tags: ["Framer Website"],
+    description: "Planza is a dynamic event planning platform that helps individuals and businesses organize memorable experiences",
+    image: "https://framerusercontent.com/images/Planza.jpg",
+    gradient: "from-[#F97316] to-[#EF4444]"
   },
   {
     title: "Horizon Atlas",
-    category: "Travel",
-    type: "Web Design",
-    image: "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=800&h=600&fit=crop",
+    tags: ["Travel", "Web Design"],
+    description: "Horizon Atlas is a travel platform that curates personalized itineraries for modern explorers",
+    image: "https://framerusercontent.com/images/Horizon.jpg",
+    gradient: "from-[#10B981] to-[#059669]"
   },
   {
     title: "NeuroSync",
-    category: "Healthcare",
-    type: "Mobile App",
-    image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?w=800&h=600&fit=crop",
-  },
+    tags: ["Healthcare", "Mobile App"],
+    description: "NeuroSync is a healthcare mobile app that helps individuals monitor and manage neurological health",
+    image: "https://framerusercontent.com/images/NeuroSync.jpg",
+    gradient: "from-[#8B5CF6] to-[#6366F1]"
+  }
 ]
 
 export function FeaturedWorks() {
   return (
-    <section id="works" className="py-24 px-6">
-      <div className="max-w-7xl mx-auto">
+    <section id="works" className="py-20 px-4">
+      <div className="mx-auto max-w-[1200px]">
+        {/* Section Header */}
         <div className="flex items-center justify-between mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground">Featured works</h2>
+          <h2 className="text-2xl md:text-3xl font-medium text-white">Featured works</h2>
           <Link
             href="#"
-            className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
+            className="flex items-center gap-2 text-white/70 hover:text-white transition-colors text-sm border border-white/20 px-4 py-2 rounded-full hover:border-white/40"
           >
             All Works
-            <ArrowUpRight className="h-4 w-4" />
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="rotate-[-45deg]">
+              <path d="M3 8H13M13 8L8 3M13 8L8 13" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
           </Link>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-6">
-          {works.map((work, index) => (
+        {/* Works Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {works.map((work) => (
             <Link
-              key={index}
+              key={work.title}
               href="#"
-              className="group relative overflow-hidden rounded-2xl bg-secondary aspect-[4/3]"
+              className="group block"
             >
-              <img
-                src={work.image}
-                alt={work.title}
-                className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-black/0" />
-              <div className="absolute bottom-0 left-0 right-0 p-6">
-                <div className="flex items-center gap-2 mb-2">
-                  <span className="text-xs text-white/80 bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full">
-                    {work.category}
-                  </span>
-                  <span className="text-xs text-white/80 bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full">
-                    {work.type}
-                  </span>
+              <div className="bg-[#1a1a1a] rounded-2xl overflow-hidden border border-white/5 hover:border-white/10 transition-all">
+                {/* Image */}
+                <div className={`aspect-[16/10] bg-gradient-to-br ${work.gradient} relative overflow-hidden`}>
+                  <div className="absolute inset-0 flex items-center justify-center p-8">
+                    <div className="w-full h-full bg-white/10 rounded-xl backdrop-blur-sm border border-white/20 flex items-center justify-center shadow-2xl">
+                      <span className="text-white/90 text-xl font-medium">{work.title}</span>
+                    </div>
+                  </div>
                 </div>
-                <h3 className="text-xl font-semibold text-white">{work.title}</h3>
-              </div>
-              <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity">
-                <div className="bg-white rounded-full p-2">
-                  <ArrowUpRight className="h-4 w-4 text-foreground" />
+                
+                {/* Content */}
+                <div className="p-6">
+                  <h3 className="text-xl font-medium text-white mb-3">{work.title}</h3>
+                  <div className="flex flex-wrap gap-2">
+                    {work.tags.map((tag) => (
+                      <span
+                        key={tag}
+                        className="px-3 py-1 bg-white/5 rounded-full text-white/60 text-sm"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
                 </div>
               </div>
             </Link>
